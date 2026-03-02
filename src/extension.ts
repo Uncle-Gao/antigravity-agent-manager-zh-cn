@@ -366,17 +366,17 @@ async function applyPatch() {
     // ---------------------------
 
     processDirectory(dir, patchFile);
-    vscode.window.showInformationMessage('✅ Agent Manager 汉化补丁应用成功！请完全退出并重新启动 Antigravity 以生效。');
+    vscode.window.showInformationMessage('✅ 汉化替换已完成！由于底层界面存在强缓存，您可能需要【连续重启 2 次】Antigravity 客户端，汉化界面才会完全生效。');
 }
 
-function revertPatch() {
+async function revertPatch() {
     const dir = getJetskiAgentPath();
     if (!dir) {
         vscode.window.showWarningMessage('未找到 Antigravity 应用目录。');
         return;
     }
     processDirectory(dir, revertFile);
-    vscode.window.showInformationMessage('✅ Agent Manager 汉化已还原！请完全退出并重新启动 Antigravity 以生效。');
+    vscode.window.showInformationMessage('✅ Agent Manager 汉化已还原！由于缓存原因，您可能需要【连续重启 2 次】Antigravity 客户端才能完全恢复英文。');
 }
 
 // =======================================================================

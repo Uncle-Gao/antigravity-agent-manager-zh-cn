@@ -2,7 +2,7 @@
   "name": "antigravity-agent-manager-zh-cn",
   "displayName": "Agent Manager ZH-CN Patch",
   "description": "Chinese Localization Patch for Antigravity Agent Manager",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.80.0"
   },

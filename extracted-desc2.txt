@@ -1,0 +1,27 @@
+--- use the clipboard as ---
+description:"接受 Tab 补全后高亮显示新插入的文本。",settingType:"switch",toBoolean:e=>!MFn(e),ge
+
+--- Allow Tab to view an ---
+description:"Allow Tab to view and edit the files in .gitignore. Use with caution if your .gitignore lists files containing credentials, secrets, or other sensitive information.",settingType:"switch",toBoolean:e=>LFn(e),generateSettingUpdate:e=>HVi(e)}],[ba.AGENT_BROWSER_TOOLS,{isUssSetting:!0,scree
+
+--- Changes the base URL ---
+description:`Changes the base URL on each extension page. You must restart ${t.nameShort} to use the new marketplace after changing this value.`,configurationKey:"antigravity.marketplaceGalleryItemURL",placeholder:"https://open-vsx.org/vscode/item"})}),A(gd,{children:A(j5n,{label:"插件市场搜索 URL",descri
+
+--- Changes the base URL ---
+description:`Changes the base URL for marketplace search results. You must restart ${t.nameShort} to use the new marketplace after changing this value.`,configurationKey:"antigravity.marketplaceExtensionGalleryServiceURL",placeholder:"https://open-vsx.org/vscode/gallery"})})]}),A(qf,{title:"Selectio
+
+--- buttons when selecti ---
+description:'Show "Edit" and "Chat" buttons when selecting text in the editor.',topic:"uss-editorPreferences",toBoolean:e=>Apt(e),generateSettingUpdate:e=>Fpt(e),settingType:"switch"}],[y0t.DISABLE_CODE_SNIPPET_TELEMETRY,{isUssSetting:!1,screen:Bi.Account}]]),f4n=new Map([[Bi.Agent,{sections:[{title
+
+--- Agent auto-executes  ---
+description:"Agent auto-executes commands matched by an allow list entry. For Unix shells, an allow list entry matches a command if its space-separated tokens form a prefix of the command's tokens. For PowerShell, the entry tokens may match any contiguous subsequence of the command tokens.",topic:"u
+
+--- Agent asks for permi ---
+description:"Agent asks for permission before executing commands matched by a deny list entry. The deny list follows the same matching rules as the allow list and takes precedence over the allow list.",topic:"uss-agentPreferences",readSetting:vpt,generateSettingUpdate:Rpt,settingType:"list"}],[ba.DI
+
+--- Allow Agent to view  ---
+description:"Allow Agent to view and edit the files in .gitignore automatically. Use with caution if your .gitignore lists files containing credentials, secrets, or other sensitive information.",topic:"uss-agentPreferences",toBoolean:qht,generateSettingUpdate:spn,settingType:"switch",overrideSentine
+
+--- Allow Agent to view  ---
+description:"Allow Agent to view and edit files outside of the current workspace automatically. Use with caution: this provides the Agent access to additional potentially-relevant information, but also allows the Agent to access credential files, secrets, and other files outside of the workspace tha
+

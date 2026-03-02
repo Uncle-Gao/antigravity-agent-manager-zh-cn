@@ -1,0 +1,24 @@
+--- use the clipboard as context f ---
+description:`When enabled, ${cAe.name} will use the clipboard as context for completions. May increase exposure to security exploits based on unintentional contents in clipboard.`
+
+--- Allow Tab to view and edit the ---
+description:"Allow Tab to view and edit the files in .gitignore. Use with caution if your .gitignore lists files containing credentials, secrets, or other sensitive information."
+
+--- Changes the base URL on each e ---
+description:`Changes the base URL on each extension page. You must restart ${t.nameShort} to use the new marketplace after changing this value.`
+
+--- Changes the base URL for marke ---
+description:`Changes the base URL for marketplace search results. You must restart ${t.nameShort} to use the new marketplace after changing this value.`
+
+--- Show "Edit" and "Chat" buttons ---
+description:'Show "Edit" and "Chat" buttons when selecting text in the editor.'
+
+--- Agent auto-executes commands m ---
+description:"Agent auto-executes commands matched by an allow list entry. For Unix shells, an allow list entry matches a command if its space-separated tokens form a prefix of the command's tokens. For PowerShell, the entry tokens may match any contiguous subsequence of the command tokens."
+
+--- Agent asks for permission befo ---
+description:"Agent asks for permission before executing commands matched by a deny list entry. The deny list follows the same matching rules as the allow list and takes precedence over the allow list."
+
+--- Allow Agent to view and edit f ---
+description:"Allow Agent to view and edit files outside of the current workspace automatically. Use with caution: this provides the Agent access to additional potentially-relevant information, but also allows the Agent to access credential files, secrets, and other files outside of the workspace that could be targeted in prompt injection attacks or other exploits by malicious actors."
+

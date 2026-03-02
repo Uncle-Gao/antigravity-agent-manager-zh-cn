@@ -1,0 +1,105 @@
+# Antigravity Agent Manager 汉化补丁 (ZH-CN)
+
+**Author:** [@Uncle-Gao](https://github.com/Uncle-Gao)  
+**GitHub Repository:** [https://github.com/Uncle-Gao/antigravity-agent-manager-zh-cn](https://github.com/Uncle-Gao/antigravity-agent-manager-zh-cn)
+
+这是一个为 Antigravity Agent Manager (内置智能体管理面板) 提供深度中文本地化的 VS Code 扩展补丁项目。
+
+## 项目渊源 (Origin Story)
+我是一名 UI 设计师。我本身并不会写代码，只略微懂得一些非常皮毛的编程概念。
+
+前不久，我在通过 “Vibe Coding”（氛围编程，一种通过与大模型持续对话来编写代码的开发模式）开发另一个项目时，偶然发觉 Antigravity 的 Agent Manager（智能体管理面板）居然不支持多语言。满屏的英文让像我一样的非母语设计者感到非常吃力。于是，我脑海中冒出了一个大胆的想法：**我是否能借助现代 AI 工具，通过自然语言对话（Vibe Coding）亲自为它打造一个汉化补丁？**
+
+于是，没有任何深厚开发背景的我，开启了这个 VIBE Coding 项目。本项目里每一行提取脚本、正则表达式和打包构建逻辑，皆是我通过与智能体持续沟通、打磨和封装思路而实现的结果。它不仅是一个汉化包，更是“只要有想法，AI 就能帮你把事情办成”的绝佳例证。
+
+## 我们的 Vibe Coding 研发日记 (The Journey)
+
+这个项目是完全通过我（一个不懂代码的设计师）与 AI (基于 Gemini 的开发智能体) 一步步“聊”出来的。在此我记录下这趟奇妙的核心开发历程，权当留作纪念：
+
+1. **破局点：找到隐藏的文本源**  
+   起初，我们像没头苍蝇一样在安装目录下到处找本地化配置。最终 AI 帮我锁定到了 `%LOCALAPPDATA%/Programs/Antigravity/resources/app/out/jetskiAgent/main.js` 这个被严重混淆打包后的核心文件，我们决定对它进行字符串**硬核热替换**。
+
+2. **从失败中学习：被破坏的 `Browser` 和精准定位**  
+   第一次尝试替换时，因为粗暴地替换了所有的 `"浏览器"` 词汇，导致一些代码底层对象键值被破坏（如 `e.Browser="..."` 变成了错乱字符），程序直接白屏。我们立刻吸取教训，开始加上特定的代码上下文前缀来进行精准匹配（例如把纯文本 `"Browser"` 升级为匹配 `text:"Browser"` 和 `label:"Strict Mode"` 等 React/JSX 结构特征）。
+
+3. **地毯式搜索：编写自动化提取脚本 (Node.js)**  
+   为了防止无脑的正则匹配出错，AI 教我编写了十几个不同的 `extract-*.js` 探测脚本，先通过脚本从混淆的 `main.js` 中把那些带着不可见换行符、特殊转义符号的长串英文（例如遥测协议的免责声明）完全一字不差地“抠”出来，然后再塞进我们的翻译字典里，确保 100% 安全命中。
+
+4. **对决大Boss：隐藏了132个换行符的动态字符**  
+   在汉化“自定义技能搜索路径”一段说明时，我们卡了很久。后来 AI 发现由于打包工具的 “锅”，这段看似普通的话在底层源码中被插入了整整 132 个看不见的换行符和动态环境变量 `${n}`。最终我们写了个专属外科手术脚本，用绝对偏移量把这段“妖魔化”的字符串抓取出来替换掉，成功啃下了最后一块硬骨头。
+
+5. **商业级打磨：版本预检与物理拦截**  
+   考虑到官方随时会更新大版本导致我们的硬编码字典失效甚至让软件崩溃，在最后收尾阶段，我们又往插件里加入了一个“版本嗅探器”：在每次打补丁前，它都会去底层读取当前安装的官方 `package.json`。只要发现系统更新了，就会弹出警告，极大地提升了这款业余作品的工业级健壮性。
+
+一切都是在对话中自然发生的，没有枯燥的看文档，没有繁琐的环境配置排错，有的只是一步步拆解问题的纯粹快乐。
+
+---
+
+## 技术背景
+
+Antigravity 的智能体面板 (Agent Manager) 是一个独立构建的现代 Web 界面，它被打包并嵌入在 VS Code 的 Webview 中展示。由于官方目前尚未为其提供原生的多语言本地化 (i18n) API 和语言包结构，所有界面上的英文字符串都是直接硬编码在其编译后的 `main.js` 混淆代码中的。
+
+本项目通过**动态正则替换**的技术方案，在不修改核心逻辑的前提下，直接将对应的英文字符串替换为精炼准确的中文，从而实现了对 Agent Manager 的全方位深度汉化。
+
+## 安装与使用
+
+由于这是一个针对 Antigravity 内置文件的补丁插件，您可以通过手动安装 VSIX 文件来使用它。
+
+### 1. 安装插件
+1. 下载本项目根目录下的最新版本 `antigravity-agent-manager-zh-cn-x.x.x.vsix` 文件。
+2. 在您的 VS Code/Cursor 或 Antigravity 衍生 IDE 中，打开“扩展”面板 (Extensions)。
+3. 点击面板右上角的 `...` 菜单，选择 **“从 VSIX 安装...” (Install from VSIX...)**。
+4. 选择您刚下载的 `vsix` 文件进行安装。
+
+### 2. 应用汉化补丁
+1. 安装完成后，在编辑器中按 `Ctrl+Shift+P` (Mac 上为 `Cmd+Shift+P`) 打开命令面板。
+2. 输入并选择命令：**`汉化 Agent Manager (Apply ZH-CN Patch)`**
+3. 界面右下角会弹出提示，告知您汉化已完成。
+4. **⚠️ 重要步骤：完全关闭编辑器，然后再重新打开**，以允许重新加载被修改的内部文件。
+5. 打开 Agent 面板即可享用全中文界面！
+
+### 3. 还原英文原版
+在任何时候想要恢复原版的英文界面，或者在 Antigravity 软件大版本更新导致汉化失效后需要还原重装时：
+1. 按 `Ctrl+Shift+P` (Mac 上为 `Cmd+Shift+P`) 打开命令面板。
+2. 输入并选择命令：**`还原 Agent Manager (Revert ZH-CN Patch)`**
+3. 提示还原成功后，同样需要**重启编辑器**生效。
+
+## 技术原理与开发指南
+
+本扩展通过向 `~/.gemini/antigravity` 这类特定的安装目录查找打包后的 `main.js` 文件，然后利用我们在 `src/extension.ts` 中维护的**中英文字典**进行精确与模糊的字符串文本替换来完成汉化。
+
+### 核心文件
+
+* **`src/extension.ts`**: 核心字典维护与替换逻辑都在这里。字典支持精确匹配项（利用反引号或双引号进行精确包围匹配，解决那些包含大量隐式换行符的长句），以及 `regex` 正则模式。
+* **`package.json`**: 包含版本控制、打包命令和注册的命令。
+* **`.agents/workflows/agent-manager-localization.md`**: 我们为本项目总结并沉淀的“自动化提取与测试方法论”专属 Skill 工作流。
+
+### 本地编译打包
+
+如果您克隆了本项目想要自行添加或修改汉化文案：
+
+1. 克隆代码：
+   ```bash
+   git clone <本仓库地址>
+   cd antigravity-agent-manager-zh-cn
+   ```
+2. 安装依赖：
+   ```bash
+   npm install
+   ```
+3. 在 `src/extension.ts` 中添加您想要汉化的英文原文和对应的中文。
+4. 编译并打包 VSIX 扩展：
+   ```bash
+   npm run package
+   ```
+   *注意：如果遇到 `vsce: command not found`，请先全局安装 `npm install -g @vscode/vsce`*
+
+5. 根目录下将会生成最新的 `.vsix` 文件，按前文所述的流程重新安装并应用补丁即可。
+
+## 注意事项
+
+* **针对动态获取的内容**：汉化仅对面板的静态 UI 生效。一些从云端实时获取或在本地终端执行后抛出的执行错误 (例如 "File not found") 属于系统或远端的反馈，这些文本无法通过修改此应用面板解决。
+* **随产品更新升级**：只要 Antigravity 更新不造成原英文字符串大面积重写，此汉化补丁通常都能兼容。如果发现面板有大块漏翻，可手动更新项目并重打包。
+
+---
+*Created specifically for the Chinese Antigravity user community to lower the entry barrier of agentic development environments.*

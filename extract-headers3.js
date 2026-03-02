@@ -1,0 +1,23 @@
+const fs = require('fs');
+const path = require('path');
+const os = require('os');
+const mainJsPath = path.join(os.homedir(), 'AppData', 'Local', 'Programs', 'Antigravity', 'resources', 'app', 'out', 'jetskiAgent', 'main.js');
+const c = fs.readFileSync(mainJsPath, 'utf8');
+
+const targets = [
+  'title:"Terminal"',
+  'title:"Advanced"',
+  'title:"Security"',
+  'title:"Artifact"',
+  'title:"Allowlist"',
+  'title:"Denylist"',
+];
+
+targets.forEach(t => {
+  let idx = c.indexOf(t);
+  while (idx >= 0) {
+    console.log('--- ' + t + ' ---');
+    console.log(c.substring(Math.max(0, idx - 40), Math.min(c.length, idx + 40)));
+    idx = c.indexOf(t, idx + 1);
+  }
+});

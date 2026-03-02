@@ -102,4 +102,4 @@ Antigravity 的智能体面板 (Agent Manager) 是一个独立构建的现代 We
 * **随产品更新升级**：只要 Antigravity 更新不造成原英文字符串大面积重写，此汉化补丁通常都能兼容。如果发现面板有大块漏翻，可手动更新项目并重打包。
 
 ---
-*Created specifically for the Chinese Antigravity user community to lower the entry barrier of agentic development environments.*
+*本项目从代码逻辑、逆向提取脚本，到这篇 README 文档，均由一位完全不懂编程的 UI 设计师通过与 AI 开发智能体持续自然语言对话协作（Vibe Coding）完成构建。*

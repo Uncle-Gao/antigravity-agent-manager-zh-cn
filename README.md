@@ -1,5 +1,7 @@
 # Antigravity Agent Manager 汉化补丁 (ZH-CN)
 
+*(**🇬🇧 English Note for global developers**: This is a direct string-replacement localization patch for the officially un-localized Antigravity Agent Manager UI in VS Code. It replaces hardcoded English texts in the obfuscated `main.js` webview bundle into Chinese. If you are struggling with localizing Antigravity into your own language, feel free to fork my Node.js extraction scripts in this repo!)*
+
 **Author:** [@Uncle-Gao](https://github.com/Uncle-Gao)  
 **GitHub Repository:** [https://github.com/Uncle-Gao/antigravity-agent-manager-zh-cn](https://github.com/Uncle-Gao/antigravity-agent-manager-zh-cn)
 
